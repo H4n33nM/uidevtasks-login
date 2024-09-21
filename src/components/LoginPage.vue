@@ -8,8 +8,8 @@
       <form @submit.prevent="handleLogin">
         <h1>Welcome back!</h1>
         <div class="alternate-login">
-          <button class="alt">Continue with Google</button>
-          <button class="alt">Continue with Twitter</button>
+          <button class="alt"><img :src="google" alt="Google" class="icon" />Continue with Google</button>
+          <button class="alt"><img :src="twitter" alt="Twitter" class="icon" />Continue with Twitter</button>
         </div>
         <hr class="divider">
         Enter your email address
@@ -24,6 +24,12 @@
 
     <!--image-->
     <div class="image">
+      <h1 id="image-text">Work with us</h1>
+      <span id="placeholder">Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Morbi
+        lobortis maximus nunc, ac rhoncus odio
+        congue quis. Sed ac semper orci, eu
+        porttitor lacus. </span>
       <img :src="flowersImage" alt="Flowers" />
       <div class="overlay"></div>
     </div>
@@ -38,6 +44,8 @@ export default {
   data() {
     return {
       flowersImage: require('@/assets/flowers.png'),
+      google: require('@/assets/google.png'),
+      twitter: require('@/assets/twitter.png'),
       email: '',
       password: ''
     }
@@ -61,6 +69,7 @@ h1 {
   color: #333333;
   font-size: 32px;
 }
+
 
 .login-container {
   display: flex;
@@ -97,6 +106,25 @@ h1 {
   height: 1024px;
   background-color: rgba(17, 17, 17, 0.25);
   z-index: 1;
+}
+
+#image-text {
+  position: absolute;
+  right: 1450px;
+  bottom: 595px;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 56px;
+}
+
+#placeholder {
+  position: absolute;
+  right: 1330px;
+  bottom: 450px;
+  padding-left: 95px;
+  z-index: 2;
+  color: #ffffff;
+  font-size: 24px;
 }
 
 /*Login Form*/
@@ -197,5 +225,11 @@ input:hover {
 
 .alternate-login {
   padding: 0px 10px 40px 10px;
+}
+
+.icon {
+  position: absolute;
+  right: 770px;
+  padding: 1px;
 }
 </style>
