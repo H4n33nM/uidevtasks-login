@@ -15,7 +15,13 @@
         Enter your email address
         <input v-model="email" type="email">
         Enter your password
-        <input v-model="password" type="password">
+        <div class="password-input">
+          <input v-model="password" :type="passwordVisible ? 'text' : 'password'">
+          <button type="button" @click="togglePasswordVisibility">
+            <img :src="passwordVisible ? hideIcon : showIcon" alt="Toggle Password Visibility" />
+            {{ passwordVisible ? 'Hide' : 'Show' }}
+          </button>
+        </div>
         <span class="hyperlink">Forgot your password?</span>
         <button class="sign-in" type="submit">Sign In</button>
       </form>
@@ -46,8 +52,11 @@ export default {
       flowersImage: require('@/assets/flowers.png'),
       google: require('@/assets/google.png'),
       twitter: require('@/assets/twitter.png'),
+      showIcon: require('@/assets/show.png'),
+      hideIcon: require('@/assets/hide.png'),
       email: '',
-      password: ''
+      password: '',
+      passwordVisible: false
     }
   },
   methods: {
@@ -58,6 +67,9 @@ export default {
         this.password = '';
         alert('Login successful!');
       }
+    },
+    togglePasswordVisibility() {
+      this.passwordVisible = !this.passwordVisible;
     }
   }
 }
@@ -153,6 +165,33 @@ input {
 
 input:hover {
   border: 1px solid #997825;
+}
+
+.password-input {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  font-family: 'Poppins';
+}
+
+button img {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+button:hover {
+  color: #997825;
+  /* Change text color on hover */
 }
 
 .hyperlink {
